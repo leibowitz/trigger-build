@@ -2,6 +2,7 @@ from os import path
 
 from kubernetes import client, config
 
+
 def create_service_object(name, ports):
     service = client.V1Service()
     service.api_version = "v1"
@@ -19,6 +20,7 @@ def create_service_object(name, ports):
     ]
     service.spec = spec
     return service
+
 
 def create_deployment_object(image, name, ports=[], replicas=1):
     container_ports = [client.V1ContainerPort(container_port=p) for p in ports]
