@@ -1,7 +1,6 @@
 import json
 import sys
 
-from kubernetes import client, config, watch
 from k8s import k8s_deploy
 
 def deploy(registry, image, name=None):
@@ -10,7 +9,6 @@ def deploy(registry, image, name=None):
     k8s_deploy(image, name)
 
 def lambda_handler(event, context):
-    config.load_kube_config()
     for record in event['Records']:
         msg = json.loads(record['Sns']['Message'])
         print(msg)
